@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Burger from "../Burger/Burger";
 import Button from "../UI/Button/Button";
 import classes from "./CheckoutSummary.module.css";
+import { withRouter } from "react-router-dom";
 class CheckoutSummary extends Component {
   state = {
     ingredients: {
@@ -17,12 +18,12 @@ class CheckoutSummary extends Component {
       <div className={classes.CheckoutSummary}>
         <h1>We hope this burger taste good!</h1>
         <div>
-          <Burger ingredients={this.state.ingredients} />
+          <Burger ingredients={this.props.ingredients} />
         </div>
-        <Button btnType="Danger" clicked>
+        <Button btnType="Danger" clicked={this.props.orderCanceled}>
           CANCEL
         </Button>
-        <Button btnType="Sucess" clicked>
+        <Button btnType="Sucess" clicked={this.props.orderContinued}>
           CONTINUE
         </Button>
       </div>
@@ -30,4 +31,4 @@ class CheckoutSummary extends Component {
   }
 }
 
-export default CheckoutSummary;
+export default withRouter(CheckoutSummary);

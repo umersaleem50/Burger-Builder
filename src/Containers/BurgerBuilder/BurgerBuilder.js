@@ -81,25 +81,40 @@ class BurgerBuilder extends Component {
   };
 
   parchaseContinueHandler = () => {
-    this.setState({ loading: true });
-    const data = {
-      ingredients: this.state.ingredients,
-      totalPrice: this.state.totalPrice,
-      customer: {
-        name: "Max millian",
-        address: {
-          street: "123 block 1",
-          house: "225",
-          city: "lahore",
-        },
-      },
-      dilerver: "fastest",
-    };
-    axios
-      .post("/orders.json", data)
-      .then((response) => this.setState({ loading: false, parchasing: false }))
-      .catch((error) => this.setState({ loading: false, parchasing: false }));
-    // alert("You continue!");
+    console.log(this.state.ingredients);
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      // console.log(i);
+      queryParams.push(
+        encodeURIComponent(i) +
+          "=" +
+          encodeURIComponent(this.state.ingredients[i])
+      );
+    }
+    const queryString = queryParams.join("&");
+    this.props.history.push({
+      pathname: "/checkout",
+      search: "?" + queryString,
+    });
+    // this.setState({ loading: true });
+    // const data = {
+    //   ingredients: this.state.ingredients,
+    //   totalPrice: this.state.totalPrice,
+    //   customer: {
+    //     name: "Max millian",
+    //     address: {
+    //       street: "123 block 1",
+    //       house: "225",
+    //       city: "lahore",
+    //     },
+    //   },
+    //   dilerver: "fastest",
+    // };
+    // axios
+    //   .post("/orders.json", data)
+    //   .then((response) => this.setState({ loading: false, parchasing: false }))
+    //   .catch((error) => this.setState({ loading: false, parchasing: false }));
+    // // alert("You continue!");
   };
 
   //Course teacher used closeModelHandler, But I used parchaseHandler for both Ordering
