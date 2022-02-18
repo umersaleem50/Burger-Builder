@@ -12,9 +12,9 @@ class App extends Component {
       <Layout>
         <Switch>
           <Route path="/" exact component={BurgerBuilder} />
-          <Route path="/checkout" exact component={Checkout} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/orders" exact component={Orders} />
-          <Route render={() => <h3>404 Not found</h3>} />
+          {/* <Route render={() => <h3>404 Not found</h3>} /> */}
         </Switch>
       </Layout>
     );
