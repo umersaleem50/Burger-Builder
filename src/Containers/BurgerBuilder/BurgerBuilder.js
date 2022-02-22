@@ -98,6 +98,7 @@ class BurgerBuilder extends Component {
       pathname: "/checkout",
       search: "?" + queryString,
     });
+    // console.log(this.props);
     // this.setState({ loading: true });
     // const data = {
     //   ingredients: this.state.ingredients,
